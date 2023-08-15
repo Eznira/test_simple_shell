@@ -31,9 +31,11 @@ int main(void)
 			waitpid(child_pid, NULL, 0);
 		}
 
+	}
+
 	free(input);
 	free(command);
 
 	return 0;
-	}
+
 }

@@ -13,7 +13,12 @@ int main(void)
 		printf("$ ");  // Display prompt
 		read_input(&input, &input_size);  // Read user input
 
-		// Parse input into command and arguments
+		if (feof(stdin)) // Check for end of file (Ctrl+D)
+                 {
+			 printf("\n");
+                        break;
+		 }
+                // Parse input into command and arguments
 		parse_input(input, &command, args);
 
 		// Print parsed command and arguments

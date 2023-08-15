@@ -21,11 +21,19 @@ int main(void)
                 // Parse input into command and arguments
 		parse_input(input, &command, args);
 
-		// Print parsed command and arguments
-		printf("Command: %s\n", command);
-		for (int i = 0; args[i] != NULL; ++i)
-		{
-			printf("Arg %d: %s\n", i, args[i]);
+                // Create a child process
+		pid_t child_pid = fork();
+
+		if (child_pid < 0) {
+			perror("Fork failed");
+		} else if (child_pid == 0) {
+               // Child process: execute the command
+			execvp(args[0], args);
+			perror("Execvp failed");
+			exit(1);
+		} else  {
+               // Parent process: wait for the child to complete
+			waitpid(child_pid, NULL, 0);
 		}
 
 	}
@@ -34,4 +42,5 @@ int main(void)
 	free(command);
 
 	return 0;
+
 }

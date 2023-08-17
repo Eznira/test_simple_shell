@@ -7,40 +7,61 @@ int main(void)
 
 	char *command = NULL;
 	char *args[MAX_INPUT_SIZE];
+	int is_background = 0;
+
+	const char *exit_shell = "exit";
 
 	while (1)
 	{
-		printf("$ ");  // Display prompt
-		read_input(&input, &input_size);  // Read user input
 
-		if (feof(stdin)) // Check for end of file (Ctrl+D)
-                 {
-			 printf("\n");
-                        break;
-		 }
-                // Parse input into command and arguments
-		parse_input(input, &command, args);
+                /* Display prompt */
+		printf("$ ");
+		get_input(&input, &input_size);
 
-                // Create a child process
+                /* Check for end of file (Ctrl+D) */
+		if ((feof(stdin)) | (strcmp(exit_shell, input) == 0))
+		{
+			printf("\n");
+			break;
+		}
+
+		/* Check for background execution */
+		is_background = 0;
+		if (input[strlen(input) - 1] == '&')
+		{
+			is_background = 1;
+			input[strlen(input) - 1] = '\0';
+		}
+
+                /* Tokenize input into command and arguments */
+		tokenize_input(input, &command, args);
+
+		/* Create a child process */
 		pid_t child_pid = fork();
 
-		if (child_pid < 0) {
+		if (child_pid < 0)
+		{
 			perror("Fork failed");
-		} else if (child_pid == 0) {
-               // Child process: execute the command
+		}
+		else if (child_pid == 0)
+		{
+			/* Child process: execute the command */
 			execvp(args[0], args);
 			perror("Execvp failed");
 			exit(1);
-		} else  {
-               // Parent process: wait for the child to complete
-			waitpid(child_pid, NULL, 0);
 		}
-
+		else
+		{
+			if (!is_background)
+			{
+				/* Parent process: wait for the child to complete */
+				waitpid(child_pid, NULL, 0);
+			}
+		}
 	}
 
 	free(input);
 	free(command);
 
-	return 0;
-
+	return (0);
 }

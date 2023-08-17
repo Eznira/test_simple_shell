@@ -10,8 +10,8 @@
 
 #define MAX_INPUT_SIZE 1024
 
-// Function declarations
-void read_input(char **input, size_t *input_size);
-void parse_input(char *input, char **command, char **args);
+/* Function declarations */
+void get_input(char **input, size_t *input_size);
+void tokenize_input(char *input, char **command, char **args);
 
 #endif /* SHELL_H */

@@ -1,14 +1,12 @@
-/* builtins.c */
-
 #include "shell.h"
 
-/* Define the array of built-in commands */
+/* Built-in commands list */
 const BuiltInCommand builtins[] = {
     {"cd", builtin_cd},
-    {"pwd", builtin_pwd},
-    {"echo", builtin_echo},
+//    {"pwd", builtin_pwd},
+//    {"echo", builtin_echo},
     /* Add more built-in commands here */
 };
 
-/* Numbersbof bultins */
+/* Number of bultins */
 const int num_builtins = sizeof(builtins) / sizeof(builtins[0]);

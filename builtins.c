@@ -1,14 +1,19 @@
-/* builtins.c */
+/* Contains all built-in functions*/
 
 #include "shell.h"
 
-/* Define the array of built-in commands */
-const BuiltInCommand builtins[] = {
-    {"cd", builtin_cd},
-    {"pwd", builtin_pwd},
-    {"echo", builtin_echo},
-    /* Add more built-in commands here */
-};
+/**
+ * builtin_cd - Change the current directory.
+ * @args: Array of command arguments.
+ */
+void builtin_cd(char **args)
+{
+    if (args[1] == NULL) {
+        fprintf(stderr, "cd: missing argument\n");
+        return;
+    }
 
-/* Numbersb of bultins */
-const int num_builtins = sizeof(builtins) / sizeof(builtins[0]);
+    if (chdir(args[1]) != 0) {
+        perror("cd");
+    }
+}

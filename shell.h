@@ -10,6 +10,16 @@
 
 #define MAX_INPUT_SIZE 1024
 
+/**
+ * struct BuiltInCommand - Represents a built-in command.
+ * @name: The name of the command.
+ * @handler: Pointer to the function that handles the command.
+ */
+typedef struct {
+    const char *name;
+    void (*handler)(char **args);
+} BuiltInCommand;
+
 /* Util functions */
 ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream);
 

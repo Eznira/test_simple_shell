@@ -18,9 +18,9 @@ int main(void)
         get_input(&input, &input_size);
 
         /* Check for end of file (Ctrl+D) */
-        if ((feof(stdin)) | (strcmp(exit_shell, input) == 0))
+        if (feof(stdin))
         {
-            printf("\n");
+	    printf("\n");
             break;
         }
 

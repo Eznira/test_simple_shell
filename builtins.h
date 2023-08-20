@@ -1,8 +1,10 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef BUILTINS_H
+#define BUILTINS_H
 
 #include <unistd.h>
 
 void builtin_cd(char **args);
+void builtin_env(char **args);
+void builtin_exit(char **args);
 
-#endif /* SHELL_H */
+#endif /* BUILTINS_H */

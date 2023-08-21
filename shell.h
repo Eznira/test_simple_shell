@@ -29,8 +29,9 @@ extern const int num_builtins;
 /* Util functions */
 ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream);
 int _printf(const char *str, ...);
+char *_strchr(char *s, char c);
 int _strcmp(char *s1, char *s2);
-/* _strtok */
+char *_strtok(char *str, char *delim);
 
 /* Shell functions */
 void get_input(char **input, size_t *input_size);

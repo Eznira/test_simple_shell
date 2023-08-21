@@ -58,6 +58,66 @@ ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream) {
 }
 
 /**
+ * _strchr - Locates the first occurrence of a character in a string
+ * @s: Pointer to the string to search
+ * @c: Character to locate
+ *
+ * Return: Pointer to the first occurrence of @c in @s, or NULL if not found
+ */
+char *_strchr(char *s, char c)
+{
+	while (*s != '\0')
+	{
+		if (*s == c)
+			return (s);
+		s++;
+	}
+
+	return (0);
+}
+
+/**
+ * _strtok - Tokenizes a string
+ * @str: The string to tokenize
+ * @delim: The delimiter characters
+ *
+ * Return: A pointer to the next token, or NULL if no more tokens are found
+ */
+char *_strtok(char *str, char *delim)
+{
+	static char *_token = NULL;
+
+	if (str != NULL)
+	{
+		_token = str;
+	}
+
+	while (*_token != '\0' && _strchr(delim, *_token) != NULL)
+	{
+		_token++;
+	}
+
+	if (*_token == '\0')
+	{
+		return (NULL);
+	}
+
+	char *token_start = _token;
+	while (*_token != '\0' && _strchr(delim, *_token) == NULL)
+	{
+		_token++;
+	}
+
+	if (*_token != '\0')
+	{
+		*_token = '\0';
+		_token++;
+	}
+
+	return (token_start);
+}
+
+/**
  * _strcmp - Compare two strings
  * @s1: First string
  * @s2: Second string

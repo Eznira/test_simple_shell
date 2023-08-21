@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef PRINTF_H
+#define PRINTF_H
 
 #include <limits.h>
 #include <stdio.h>
@@ -37,4 +37,4 @@ int _print_upper_hex(va_list args);
 int print_str_cus(va_list args);
 int print_p(va_list args);
 
-#endif /* MAIN_H */
+#endif /* PRINTF_H */

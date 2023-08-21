@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "builtins.h"
+#include "printf.h"
 
 #define MAX_INPUT_SIZE 1024
 
@@ -27,12 +28,17 @@ extern const int num_builtins;
 
 /* Util functions */
 ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream);
+int _printf(const char *str, ...);
+int _strcmp(char *s1, char *s2);
+/* _strtok */
 
-/* Function declarations */
+/* Shell functions */
 void get_input(char **input, size_t *input_size);
 void tokenize_input(char *input, char **command, char **args);
 
 /* Builtins */
 void builtin_cd(char **args);
+void builtin_env(char **args);
+void builtin_exit(char **args);
 
 #endif /* SHELL_H */

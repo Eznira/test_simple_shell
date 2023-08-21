@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 const placeholder_struct_t placeholder_map[] = {
 	{'c', print_char},

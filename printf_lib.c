@@ -233,7 +233,7 @@ int _print_upper_hex(va_list args)
 
 int print_str_cus(va_list args)
 {
-	char s = va_arg(args, char);
+	char *s = va_arg(args, char*);
 	int count = 0;
 
 	while (*s)
@@ -262,7 +262,7 @@ int print_str_cus(va_list args)
  */
 int print_p(va_list args)
 {
-	void ptr = va_arg(args, void);
+	void* ptr = va_arg(args, void*);
 	unsigned long int addr = (unsigned long int)ptr;
 	int count = 0;
 	char hex_chars[] = "0123456789abcdef";

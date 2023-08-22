@@ -31,7 +31,7 @@ ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream) {
             buffer[index] = '\0';
             break;
         } else if (c == '\n') {
-            buffer[index] = c;
+             buffer[index] = c;
             index++;
             buffer[index] = '\0';
             break;

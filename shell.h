@@ -41,5 +41,7 @@ void tokenize_input(char *input, char **command, char **args);
 void builtin_cd(char **args);
 void builtin_env(char **args);
 void builtin_exit(char **args);
+void builtin_setenv(char **args);
+void builtin_unsetenv(char **args);
 
 #endif /* SHELL_H */

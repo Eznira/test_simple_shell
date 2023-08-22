@@ -11,7 +11,7 @@
  */
 void get_input(char **input, size_t *input_size)
 {
-	_getline(input, input_size, stdin);
+	getline(input, input_size, stdin);
 	(*input)[strlen(*input) - 1] = '\0';
 }
 
@@ -27,6 +27,7 @@ void get_input(char **input, size_t *input_size)
  */
 void tokenize_input(char *input, char **command, char **args)
 {
+	printf("tokeinizing starts");
 	*command = strtok(input, " ");
 	int arg_count = 0;
 	args[arg_count++] = *command;
@@ -38,4 +39,5 @@ void tokenize_input(char *input, char **command, char **args)
 		arg = strtok(NULL, " ");
 	}
 	args[arg_count] = NULL;
+	printf("tokeinizing ends");
 }

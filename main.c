@@ -9,8 +9,6 @@ int main(void)
     char *args[MAX_INPUT_SIZE];
     int is_background = 0;
 
-    const char *exit_shell = "exit";
-
     while (1)
     {
         /* Display prompt */

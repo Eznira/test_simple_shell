@@ -43,7 +43,6 @@ void builtin_exit(char **args)
     if (args[1] != NULL) {
         char *endptr;
         int exit_status = (int)strtol(args[1], &endptr, 10);
-	
         if (*endptr != '\0') {
             fprintf(stderr, "exit: Invalid argument: %s\n", args[1]);
             return;
@@ -52,5 +51,46 @@ void builtin_exit(char **args)
         exit(exit_status);
     } else {
         exit(0);
+    }
+}
+#include "shell.h"
+#include <stdlib.h> // Include for setenv and unsetenv
+
+/**
+ * builtin_setenv - Initialize a new environment variable or modify an existing one.
+ * @args: Array of arguments passed to the setenv command.
+ *
+ * Command syntax: setenv VARIABLE VALUE
+ * Prints an error message on stderr on failure.
+ */
+void builtin_setenv(char **args)
+{
+    if (args[1] == NULL || args[2] == NULL) {
+         perror("setenv: Missing arguments\n");
+        return;
+    }
+
+    if (setenv(args[1], args[2], 1) != 0) {
+        perror("setenv");
+    }
+}
+
+/**
+ * builtin_unsetenv - Remove an environment variable.
+ * @args: Array of arguments passed to the unsetenv command.
+ *
+ * Command syntax: unsetenv VARIABLE
+ * Prints an error message on stderr on failure.
+ */
+void builtin_unsetenv(char **args)
+{
+    if (args[1] == NULL) {
+
+	perror("unsetenv: Missing argument\n");
+        return;
+    }
+
+    if (unsetenv(args[1]) != 0) {
+        perror("unsetenv");
     }
 }

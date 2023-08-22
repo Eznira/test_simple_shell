@@ -5,6 +5,8 @@ const BuiltInCommand builtins[] = {
     {"cd", builtin_cd},
     {"env", builtin_env},
     {"exit", builtin_exit},
+    {"setenv", builtin_setenv},
+    {"unsetenv", builtin_unsetenv},
 };
 
 /* Number of bultins */

@@ -22,6 +22,10 @@ int main(void)
 			printf("\n");
 			break;
 		}
+		if (strlen(input) == 0)
+		{
+			continue;
+		}
 
 		/* Tokenize input into command and arguments */
 		tokenize_input(input, &command, args);

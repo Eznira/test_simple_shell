@@ -26,6 +26,7 @@ typedef struct builtincommand
 /* Contstants */
 extern const BuiltInCommand builtins[];
 extern const int num_builtins;
+extern char **environ;
 
 /* Util functions */
 ssize_t _getline(char **line_input_ptr, size_t *n, FILE *stream);

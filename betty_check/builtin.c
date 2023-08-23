@@ -26,7 +26,6 @@ void builtin_cd(char **args)
 void builtin_env(char __attribute__((unused)) **args)
 {
 	int i;
-	extern char **environ; /* Declare the external environment variable array */
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -40,7 +39,7 @@ void builtin_env(char __attribute__((unused)) **args)
  *
  * If no argument is provided, the shell will exit with status 0.
  * If an integer argument is provided, the shell will exit with that status.
- * If the provided argument is not a valid integer, an error message will be printed.
+ * If the provided arg is not a valid int, an error message will be printed.
  */
 void builtin_exit(char **args)
 {
@@ -48,6 +47,7 @@ void builtin_exit(char **args)
 	{
 		char *endptr;
 		int exit_status = (int) strtol(args[1], &endptr, 10);
+
 		if (*endptr != '\0')
 		{
 			fprintf(stderr, "exit: Invalid argument: %s\n", args[1]);
@@ -62,11 +62,8 @@ void builtin_exit(char **args)
 	}
 }
 
-#include "shell.h"
-#include <stdlib.h> /* Include for setenv and unsetenv */
-
 /**
- * builtin_setenv - Initialize a new environment variable or modify an existing one.
+ * builtin_setenv - Initialize a new environment var or modify an existing one.
  * @args: Array of arguments passed to the setenv command.
  *
  * Command syntax: setenv VARIABLE VALUE
